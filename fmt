@@ -60,4 +60,3 @@ fmt_printf() {
 fmt_echo() {
 	fmt_printf "$1" '%s\n' "$2"
 }
-
