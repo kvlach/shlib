@@ -1,3 +1,3 @@
 # shlib
 
-A collection of small shell scripts that can be used within other scripts.
+A collection of small shell scripts that can be used as a standard library.
