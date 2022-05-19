@@ -4,22 +4,22 @@ LOG_LEVEL=2
 LOG_DATEFORMAT='+%Y-%m-%d %H:%M:%S'
 
 log_debug() {
-	[ "$LOG_LEVEL" -le 1 ] && _log DEBUG "$1"
+	[ "$LOG_LEVEL" -le 1 ] && _log_log DEBUG "$1"
 }
 
 log_info() {
-	[ "$LOG_LEVEL" -le 2 ] && _log INFO "$1"
+	[ "$LOG_LEVEL" -le 2 ] && _log_log INFO "$1"
 }
 
 log_warning() {
-	[ "$LOG_LEVEL" -le 3 ] && _log WARNING "$1"
+	[ "$LOG_LEVEL" -le 3 ] && _log_log WARNING "$1"
 }
 
 log_error() {
-	[ "$LOG_LEVEL" -le 4 ] && _log ERROR "$1"
+	[ "$LOG_LEVEL" -le 4 ] && _log_log ERROR "$1"
 }
 
-_log() {
+_log_log() {
 	level="$1"
 	msg="$2"
 	printf '[%s] [%s] %s\n' "$(date "$LOG_DATEFORMAT")" "$level" "$msg"
