@@ -1,0 +1,63 @@
+#!/bin/sh -eu
+
+# This is meant to be a very simple module, no 8/24-bit color support is
+# planned. Example usage:
+#
+# ```sh
+# fmt_printf 'italic' '%s\n' 'Italic text.'
+# fmt_echo 'bright with fg red with bg white' 'Bright red with a white background!'
+# ```
+#
+# Based on: https://xn--rpa.cc/irl/term.html
+
+_fmt_ansi_escape_code() {
+	printf '\x1b['
+
+	for arg in $1; do
+		case "$arg" in
+			with)      printf ';' ;;
+			plain)     printf '0' ;;
+			no)        printf '2' ;;
+			bright)    printf '1' ;;
+			dim)       printf '2' ;;
+			italic)    printf '3' ;;
+			underline) printf '4' ;;
+			reverse)   printf '7' ;;
+
+			fg)        printf '3' ;;
+			bg)        printf '4' ;;
+			br_fg)     printf '9' ;;
+			br_bg)     printf '10' ;;
+			black)     printf '0' ;;
+			red)       printf '1' ;;
+			green)     printf '2' ;;
+			yellow)    printf '3' ;;
+			blue)      printf '4' ;;
+			magenta)   printf '5' ;;
+			cyan)      printf '6' ;;
+			white)     printf '7' ;;
+
+			# TODO: add arg not found error
+			# *)
+		esac
+	done
+
+	printf 'm'
+}
+
+fmt_printf() {
+	# TODO: add errors if no $1 or $2 is provided
+
+	_fmt_ansi_escape_code "$1"
+	shift
+
+	# shellcheck disable=SC2059
+	printf "$@"
+
+	_fmt_ansi_escape_code 'plain'
+}
+
+fmt_echo() {
+	fmt_printf "$1" '%s\n' "$2"
+}
+
