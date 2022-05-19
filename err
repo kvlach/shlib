@@ -1,0 +1,6 @@
+#!/bin/sh -eu
+
+err_help() {
+	help 1>&2
+	exit 1
+}
