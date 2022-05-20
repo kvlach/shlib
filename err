@@ -1,5 +1,24 @@
 #!/bin/sh -eu
 
+# The way I write shell, I define a help function that prints a help message
+# inside of every command/subcommand function and the main function. This
+# function is very commonly used. For example:
+#
+# ```sh
+# #!/bin/sh
+#
+# . "$(dirname "$0")/lib/err"
+#
+# main() {
+#     help() {
+#         echo 'Help message.'
+#     }
+#
+#     [ $# -lt 1 ] && err_help
+#
+#     ...
+# }
+# ```
 err_help() {
 	help 1>&2
 	exit 1
