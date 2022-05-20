@@ -20,3 +20,10 @@ log_info 'Example script'
 
 Some modules use variables for configuration, make sure to set them **after**
 importing, otherwise they will get overriden by the default values.
+
+## Private and Public functions
+
+Private functions in the code are prefixed by `__modulename_`, you are, as the
+name suggests, not supposed to use these, public ones are prefixed by
+`modulename_`. It is possible to redefine both the private and the public
+functions so be careful about that.
