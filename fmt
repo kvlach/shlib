@@ -10,6 +10,22 @@
 #
 # Based on: https://xn--rpa.cc/irl/term.html
 
+fmt_echo() {
+	fmt_printf "$1" '%s\n' "$2"
+}
+
+fmt_printf() {
+	# TODO: add errors if no $1 or $2 is provided
+
+	__fmt_ansi_escape_code "$1"
+	shift
+
+	# shellcheck disable=SC2059
+	printf "$@"
+
+	__fmt_ansi_escape_code 'plain'
+}
+
 __fmt_ansi_escape_code() {
 	printf '\x1b['
 
@@ -43,20 +59,4 @@ __fmt_ansi_escape_code() {
 	done
 
 	printf 'm'
-}
-
-fmt_printf() {
-	# TODO: add errors if no $1 or $2 is provided
-
-	__fmt_ansi_escape_code "$1"
-	shift
-
-	# shellcheck disable=SC2059
-	printf "$@"
-
-	__fmt_ansi_escape_code 'plain'
-}
-
-fmt_echo() {
-	fmt_printf "$1" '%s\n' "$2"
 }
