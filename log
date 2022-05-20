@@ -3,20 +3,27 @@
 LOG_LEVEL=2
 LOG_DATEFORMAT='+%Y-%m-%d %H:%M:%S'
 
+# If `set -e` has been used in the parent script then `return 0` is required
+# so that the script doesn't exit.
+
 log_debug() {
 	[ "$LOG_LEVEL" -le 1 ] && __log_log DEBUG "$1"
+	return 0
 }
 
 log_info() {
 	[ "$LOG_LEVEL" -le 2 ] && __log_log INFO "$1"
+	return 0
 }
 
 log_warning() {
 	[ "$LOG_LEVEL" -le 3 ] && __log_log WARNING "$1"
+	return 0
 }
 
 log_error() {
 	[ "$LOG_LEVEL" -le 4 ] && __log_log ERROR "$1"
+	return 0
 }
 
 __log_log() {
