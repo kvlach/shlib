@@ -7,7 +7,7 @@
 # ```sh
 # #!/bin/sh
 #
-# . "$(dirname "$0")/lib/err"
+# . "$(dirname "$0")/shlib/err"
 #
 # main() {
 #     help() {
