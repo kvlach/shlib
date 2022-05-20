@@ -10,7 +10,7 @@
 #
 # Based on: https://xn--rpa.cc/irl/term.html
 
-_fmt_ansi_escape_code() {
+__fmt_ansi_escape_code() {
 	printf '\x1b['
 
 	for arg in $1; do
@@ -48,13 +48,13 @@ _fmt_ansi_escape_code() {
 fmt_printf() {
 	# TODO: add errors if no $1 or $2 is provided
 
-	_fmt_ansi_escape_code "$1"
+	__fmt_ansi_escape_code "$1"
 	shift
 
 	# shellcheck disable=SC2059
 	printf "$@"
 
-	_fmt_ansi_escape_code 'plain'
+	__fmt_ansi_escape_code 'plain'
 }
 
 fmt_echo() {
