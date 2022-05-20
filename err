@@ -1,8 +1,8 @@
 #!/bin/sh -eu
 
-# The way I write shell, I define a help function that prints a help message
-# inside of every command/subcommand function and the main function. This
-# function is very commonly used. For example:
+# Most of the time I define a help function that prints a help message inside
+# of every command/subcommand function and the main function. This function is
+# very commonly used. For example:
 #
 # ```sh
 # #!/bin/sh
